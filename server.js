@@ -33,7 +33,7 @@ setInterval(() => {
 //Initialize data base.
 const _ = require("lodash/object");
 var fs=require('fs');
-
+const crc32 = require("./rdm.js").crc32;
 //Load dictioanry
 var dict =JSON.parse(fs.readFileSync('dict.json'));
 //console.log(dict["絕"]);
@@ -94,12 +94,35 @@ function handleQuery(text)
 bot.on('sticker', (ctx) => ctx.reply('請向我發送要查詢的漢字'))
 
 bot.on('text', (ctx) => {
+  console.log(ctx.message.text);
 ctx.replyWithHTML(handleQuery(ctx.message.text))//repeat what user sent
 })
 
+bot.on('inline_query', (ctx) => {
+    const q = ctx.inlineQuery.query;
+    console.log(q);
+    var results = [];
+ 
+        results = [
+        {
+          type: "article",
+          id: crc32(q),
+          title: "查詢結果",
+          description:  q,
+          input_message_content: {
+          message_text: q
+        },
+          thumb_url:
+          "https://cdn.glitch.com/9d1f90c8-b5d9-484a-92fc-fb3f53f38a08%2Favatar.png?v=1574873618584"
+        }
+      ];
+       console.log(JSON.stringify(results));
+       ctx.answerInlineQuery(results);
+    
+});
 //error handling
 bot.catch((err, ctx) => {
-  console.log(`Ooops, ecountered an error for ${ctx.updateType}`, err)
+  console.log(`Ooops, ecountered an error `, err)
 })
 
 //bot.hears: Registers middleware for handling text messages
