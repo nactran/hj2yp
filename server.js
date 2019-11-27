@@ -63,7 +63,7 @@ bot.use((ctx, next) => {
 });
 
 //Handling commands
-bot.start((ctx) => ctx.reply('向我發送一個漢字，我會告訴你它的所有可能讀音'))
+bot.start((ctx) => ctx.reply('向我發送一個漢字，我會告訴你它所有可能的粤語讀音'))
 bot.help((ctx) => ctx.reply('請向我發送要查詢的漢字'))
 //bot.command('start', (ctx) => ctx.reply('Bot started.')) //bot.start is pirior to this
 
