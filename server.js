@@ -71,18 +71,23 @@ function handleQuery(text)
 {
   if (text.length > 0)
     {
-      var res = dict[text.charAt(0)];
-      if (res != undefined) 
+      const maxlen = text.length<64?text.length:64;
+      var tmp = ""; 
+      for(var i = 0; i < maxlen; i++)
         {
-          var tmp = ""
-          res.forEach(
-            (item)=> tmp = tmp + item + ";"
-          )
-          return tmp;
-        }
-      else return("未搜尋到結果");
-      
+          tmp = tmp + text.charAt(i)+": "
+          var res = dict[text.charAt(i)];
+          if (res != undefined) 
+          {
+            res.forEach(
+              (item)=> tmp = tmp + item + ";"
+            )
+          }  
+          tmp += '\n';
+        }      
+      return tmp;
     }
+  else return "查詢字串為空\n";
 }
 
 //on: Registers middleware for provided update type.
