@@ -2,7 +2,7 @@
 =================
 
 ## 輸入漢字 查詢粵拼
-> Glitch automatically saves the file, quite literally, on every keypress you make. And restarts it. This is not only slightly visually annoying, but also damaging to bots
+数据根据 ktshek 整理的[1974_1996_粵語同音字典](https://github.com/jyutnet/cantonese-books-data/tree/master/1974_1996_粵語同音字典) 处理而成  
 
 
 Made by [Glitch](https://glitch.com/)
