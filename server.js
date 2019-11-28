@@ -72,6 +72,12 @@ bot.start(ctx => ctx.reply("向我發送一個漢字，我會告訴你它所有�
 bot.help(ctx => ctx.reply("請向我發送要查詢的漢字（僅支持繁體中文）"));
 //bot.command('start', (ctx) => ctx.reply('Bot started.')) //bot.start is pirior to this
 
+/**
+ * 處理用戶發過來的消息。找到每個漢字對應的粵拼
+ *
+ * @param {String} text
+ * @returns {String}
+ */
 function handleQuery(text) {
   if (text.length > 0) {
     const maxlen = text.length < 64 ? text.length : 64;
