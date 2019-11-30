@@ -93,7 +93,7 @@ function handleQuery(text) {
     return tmp;
   } else return "查詢字串為空\n";
 }
-
+ 
 //on: Registers middleware for provided update type.
 bot.on("sticker", ctx => ctx.reply("請向我發送要查詢的漢字（僅支持繁體中文）"));
 
@@ -103,25 +103,26 @@ bot.on("text", ctx => {
 });
 
 bot.on("inline_query", ctx => {
-  const q = ctx.inlineQuery.query;
-  console.log(q);
-  var results = [];
+  
+    const q = ctx.inlineQuery.query;
+    console.log(q);
+    var results = [];
 
-  results = [
-    {
-      type: "article",
-      id: crc32(q),
-      title: "查詢結果",
-      description: q,
-      input_message_content: {
-        message_text: q
-      },
-      thumb_url:
-        "https://cdn.glitch.com/9d1f90c8-b5d9-484a-92fc-fb3f53f38a08%2Favatar.png?v=1574873618584"
-    }
-  ];
-  console.log(JSON.stringify(results));
-  ctx.answerInlineQuery(results);
+    results = [
+      {
+        type: "article",
+        id: crc32(q),
+        title: "查詢結果",
+        description: q,
+        input_message_content: {
+          message_text: q
+        },
+        thumb_url:
+          "https://cdn.glitch.com/9d1f90c8-b5d9-484a-92fc-fb3f53f38a08%2Favatar.png?v=1574873618584"
+      }
+    ];
+    console.log(JSON.stringify(results));
+    ctx.answerInlineQuery(results);
 });
 //error handling
 bot.catch((err, ctx) => {
